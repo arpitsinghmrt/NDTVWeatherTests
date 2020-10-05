@@ -24,17 +24,19 @@ public class BaseTest {
     public void testSetup() {
         fileIOOperations.deleteScreenshotFolder();
 
-        if (fileIOOperations.readPropertyFromConfig("webDriver").equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", fileIOOperations.readPropertyFromConfig("chromeDriverPath"));
-            final ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setHeadless(false);
-            driver = new ChromeDriver(chromeOptions);
-        }
-        if (fileIOOperations.readPropertyFromConfig("webDriver").equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", fileIOOperations.readPropertyFromConfig("geckoDriverPath"));
-            final FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setHeadless(false);
-            driver = new FirefoxDriver(firefoxOptions);
+        if (driver == null) {
+            if (fileIOOperations.readPropertyFromConfig("webDriver").equals("chrome")) {
+                System.setProperty("webdriver.chrome.driver", fileIOOperations.readPropertyFromConfig("chromeDriverPath"));
+                final ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setHeadless(false);
+                driver = new ChromeDriver(chromeOptions);
+            }
+            if (fileIOOperations.readPropertyFromConfig("webDriver").equals("firefox")) {
+                System.setProperty("webdriver.gecko.driver", fileIOOperations.readPropertyFromConfig("geckoDriverPath"));
+                final FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setHeadless(false);
+                driver = new FirefoxDriver(firefoxOptions);
+            }
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

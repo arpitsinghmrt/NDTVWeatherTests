@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class FileIOOperations {
-    private static Logger logger = Logger.getLogger(GenericActions.class);
+    private static Logger logger = Logger.getLogger(FileIOOperations.class);
 
     public String readPropertyFromConfig(String propertyKey) {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties");

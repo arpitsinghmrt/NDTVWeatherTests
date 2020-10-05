@@ -43,10 +43,16 @@ public class GenericActions {
         this.takeSreenshot();
     }
 
-    public void setText(WebElement webElement, String text) {
+    public void setText(WebElement element, String text) {
         webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.sendKeys(text);
+        webDriverWait.until(ExpectedConditions.visibilityOf(element));
+        element.sendKeys(text);
         this.takeSreenshot();
+    }
+
+    public String getText(WebElement element) {
+        webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
     }
 }
