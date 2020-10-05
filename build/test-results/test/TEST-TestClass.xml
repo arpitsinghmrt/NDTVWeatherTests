@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-05T10:38:04" hostname="MacBook-Pro.local" time="14.775">
+  <properties/>
+  <testcase name="test" classname="TestClass" time="14.775"/>
+  <system-out><![CDATA[[Test worker] INFO  util.GenericActions  - Screenshots deleted successfully
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 85.0.4183.87 (cd6713ebf92fa1cacc0f1a598df280093af0c5d7-refs/branch-heads/4183@{#1689}) on port 14234
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Oct 05, 2020 4:08:04 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

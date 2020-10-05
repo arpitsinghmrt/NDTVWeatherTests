@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.141.59'
+    implementation group: 'com.google.guava', name: 'guava', version: '29.0-jre'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+}
+
+test {
+    useTestNG() {
+        useDefaultListeners = true
+//        suites 'testng.xml'
+    }
+}
