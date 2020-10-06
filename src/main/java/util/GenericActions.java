@@ -11,18 +11,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+
 
 public class GenericActions {
 
-    WebDriver driver;
+    private final WebDriver driver;
+    private static final Logger logger = Logger.getLogger(GenericActions.class);
 
+    WebDriverWait webDriverWait = null;
     public GenericActions(WebDriver driver) {
         this.driver = driver;
     }
 
-    WebDriverWait webDriverWait = null;
 
 
     public void takeSreenshot() {
@@ -34,6 +34,7 @@ public class GenericActions {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.info("Screenshot captured and saved as: "+destinationFile);
     }
 
     public void waitAndClick(WebElement element) {
@@ -54,5 +55,12 @@ public class GenericActions {
         webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
+    }
+
+    public boolean verifyElementPresent(WebElement element) {
+        if (element.isDisplayed())
+            return true;
+        else
+            return false;
     }
 }

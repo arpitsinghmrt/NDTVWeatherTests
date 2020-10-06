@@ -1,3 +1,5 @@
+package com.ndtvWeatherReportTests;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -5,7 +7,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import util.GenericActions;
 import util.FileIOOperations;
 
 import java.util.concurrent.TimeUnit;
@@ -27,18 +28,23 @@ public class BaseTest {
         if (driver == null) {
             if (fileIOOperations.readPropertyFromConfig("webDriver").equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", fileIOOperations.readPropertyFromConfig("chromeDriverPath"));
-                final ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setHeadless(false);
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--window-size=1920,1080");
+                chromeOptions.addArguments("--incognito");
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
             }
             if (fileIOOperations.readPropertyFromConfig("webDriver").equals("firefox")) {
                 System.setProperty("webdriver.gecko.driver", fileIOOperations.readPropertyFromConfig("geckoDriverPath"));
                 final FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setHeadless(false);
+                firefoxOptions.setHeadless(true);
+                firefoxOptions.addArguments("--maximized");
+                firefoxOptions.addArguments("--disable-notifications");
                 driver = new FirefoxDriver(firefoxOptions);
             }
         }
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

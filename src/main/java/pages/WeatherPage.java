@@ -16,7 +16,7 @@ public class WeatherPage {
     public WeatherPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        genericActions=new GenericActions(driver);
+        genericActions = new GenericActions(driver);
 
     }
 
@@ -33,6 +33,19 @@ public class WeatherPage {
     }
 
     public void selectCityPinOnMap(String city) {
-        genericActions.waitAndClick(driver.findElement(By.xpath("//div[contains(@class, 'cityText') and text() = '"+city+"']/..//div/span[2]")));
+        genericActions.waitAndClick(driver.findElement(By.xpath("//div[contains(@class, 'cityText') and text() = '" + city + "']/..//div/span[2]")));
+    }
+
+    public boolean isCityInfoPopUpDisplayed(String city) {
+        return genericActions.verifyElementPresent(driver.findElement(By.xpath("//span[contains(text(), '" + city + "')]/../../..")));
+    }
+
+    public String getTemperatureInFahrenheit(String city) {
+        return genericActions.getText(driver.findElement((By.xpath("//span[contains(text(), '" + city + "')]/../..//span/b[contains(text(), 'Fahrenheit')]"))));
+    }
+
+    public String getTemperatureInDegrees(String city) {
+        return genericActions.getText(driver.findElement((By.xpath("//span[contains(text(), '" + city + "')]/../..//span/b[contains(text(), 'Degrees')]"))));
+
     }
 }
